@@ -1,6 +1,6 @@
-package main.com.Test;
+package com.Test;
 
-import main.com.servlet.test;
+import com.servlet.test;
 
 import java.util.Optional;
 

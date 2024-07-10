@@ -1,5 +1,8 @@
-package main.com.Test;
+package com.Test;
 
+import com.pojo.Area;
+import com.pojo.City;
+import com.pojo.Province;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -14,7 +17,6 @@ public class testSelectAll {
     static InputStream inputStream;
 
     static {
-
         try {
             inputStream = Resources.getResourceAsStream(resource);
         } catch (IOException e) {
@@ -25,37 +27,34 @@ public class testSelectAll {
     static SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
     static SqlSession sqlSession = sqlSessionFactory.openSession();
 
-
-
     public static void main(String[] args) throws IOException {
+        SelectAllProvince();
+        SelectAllCity();
         SelectAllArea();
-        sqlSession.close();
+        //sqlSession.close();
     }
+
     public static void SelectAllProvince() throws IOException {
-        List<Object> list = sqlSession.selectList("a.b.selectAll");
-        for (int i = 0; i <list.size()-1; i++) {
+        List<Object> list = sqlSession.selectList("a.b.selectAllProvince");
+        for (int i = 0; i < list.size() - 1; i++) {
             Province province = (Province) list.get(i);
-            System.out.println(province.getID()+" "+province.getProvinceID()+" "+province.getProvince());
+            System.out.print(province.getID() + " " + province.getProvinceID() + " " + province.getProvince()+"\t");
         }
-        sqlSession.close();
     }
+
     public static void SelectAllCity() throws IOException {
         List<Object> list = sqlSession.selectList("a.b.selectAllCity");
-        for (int i = 0; i <list.size()-1; i++) {
+        for (int i = 0; i < list.size() - 1; i++) {
             City city = (City) list.get(i);
-            System.out.println(city.getID()+" "+city.getCityID()+" "+city.getCity());
+            System.out.print(city.getID() + " " + city.getCityID() + " " + city.getCity()+"\t");
         }
-        sqlSession.close();
     }
+
     public static void SelectAllArea() throws IOException {
         List<Object> list = sqlSession.selectList("a.b.selectAllArea");
-        for (int i = 0; i <list.size()-1; i++) {
+        for (int i = 0; i < list.size() - 1; i++) {
             Area area = (Area) list.get(i);
-
-            System.out.println(area.getID()+" "+area.getAreaID()+" "+area.getArea());
+            System.out.print(area.getID() + " " + area.getAreaID() + " " + area.getArea()+"\t");
         }
-        sqlSession.close();
     }
-
-
 }

@@ -1,4 +1,4 @@
-package main.com.Test;
+package com.pojo;
 
 public class Province {
     private int ID;

@@ -1,4 +1,4 @@
-package main.com.Test;
+package com.Test;
 
 public class Person {
     public Person(){

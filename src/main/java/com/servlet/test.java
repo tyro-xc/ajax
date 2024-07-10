@@ -1,4 +1,4 @@
-package main.com.servlet;
+package com.servlet;
 
 
 public class test {
