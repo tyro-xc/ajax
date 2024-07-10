@@ -6,10 +6,28 @@
 </head>
 <body>
 
+<div id="text-output"></div>
 <script>
 document.getElementById('province')
 document.getElementById('city')
 document.getElementById('area')
+
+const textElement = document.getElementById('text-output');
+const textToAnimate = "Hello, world! This is a text animation example.";
+const delayBetweenChars = 20; // Adjust as needed for desired speed
+
+let index = 0;
+
+function animateText() {
+    if (index < textToAnimate.length) {
+        textElement.textContent += textToAnimate.charAt(index);
+        index++;
+        setTimeout(animateText, delayBetweenChars);
+    }
+}
+
+animateText();
+
 </script>
 
 <select id="province">
