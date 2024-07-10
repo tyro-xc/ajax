@@ -7,18 +7,16 @@
         <environment id="development">
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
-<!--                <property name="driver" value="${driver}"/>-->
-<!--                <property name="url" value="${url}"/>-->
-<!--                <property name="username" value="${username}"/>-->
-<!--                <property name="password" value="${password}"/>-->
-                <property name="driver" value="com.mysql.cj.jdbc"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/Chinese"/>
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/chinese"/>
                 <property name="username" value="root"/>
                 <property name="password" value="123456"/>
             </dataSource>
         </environment>
     </environments>
     <mappers>
-        <mapper resource="org/mybatis/example/BlogMapper.xml"/>
+        <mapper resource="mapper/ProvinceMapper.xml"></mapper>
+        <mapper resource="mapper/CityMapper.xml"></mapper>
+        <mapper resource="mapper/AreaMapper.xml"></mapper>
     </mappers>
 </configuration>
