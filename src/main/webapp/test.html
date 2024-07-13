@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    window.onload = function () {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    alert("123")
+                    console.log("123")
+                   // document.getElementById("stutbody").innerHTML=this.responseText;
+                } else {
+                    alert(this.status)
+                }
+            }
+            xhr.open("GET", "/ajax/ajaxRequest?t="+new Date().getTime(), true);
+            xhr.send();
+        }
+    }
+
+</script>
+<table>
+    <tr>
+        <th>id</th>
+        <th>areaID</th>
+        <th>area</th>
+        <th>father</th>
+    </tr>
+
+
+    <tbody id="stutbody">
+
+    </tbody>
+</table>
+</body>
+</html>

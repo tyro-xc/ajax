@@ -68,7 +68,7 @@
                     <!-- 配置Tomcat端口号 -->
                     <port>8080</port>
                     <!-- 配置应用的路径 -->
-                    <path>/myapp</path>
+                    <path>/ajax</path>
                 </configuration>
             </plugin>
         </plugins>
