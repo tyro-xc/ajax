@@ -5,8 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-<input type="button"id="btn" value="show">
-<table width="50%"border="1px" text-align="center">
+<input type="button" id="btn" value="show">
+<table width="50%" border="1px" text-align="center">
     <tr>
         <th>id</th>
         <th>areaID</th>
@@ -17,25 +17,29 @@
 </table>
 <script>
     window.onload = function () {
-        document.getElementById("btn").onclick=function () {
+        document.getElementById("btn").onclick = function () {
+            var t1 = new Date().getTime();
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
 
-                        var objlist=JSON.parse(this.responseText)
+                        var objlist = JSON.parse(this.responseText)
                         // JSON.parse(this.responseText)
-                        var html=""
+                        var html = ""
                         for (var i = 0; i < objlist.length; i++) {
-                            var obj=objlist[i];
-                            html+="<tr>"
-                            html+="<td>"+obj.ID+"</td>"
-                            html+="<td>"+obj.area+"</td>"
-                            html+="<td>"+obj.areaID+"</td>"
-                            html+="</tr>"
+                            var obj = objlist[i];
+                            html += "<tr>"
+                            html += "<td>" + obj.ID + "</td>"
+                            html += "<td>" + obj.area + "</td>"
+                            html += "<td>" + obj.areaID + "</td>"
+                            html += "</tr>"
                         }
-                        document.getElementById("stutbody").innerHTML=html;
-                       // document.getElementById("stutbody").innerHTML=this.responseText
+                        document.getElementById("stutbody").innerHTML = html;
+                        var t2 = new Date().getTime();
+                        alert("用时"+(t2-t1)/1000+"秒")
+
+                        // document.getElementById("stutbody").innerHTML=this.responseText
                     } else {
                         alert(this.status)
                     }
@@ -53,10 +57,17 @@
 <!--
 
 var xhr=new XMLHttpRequest()
-xhr.onreadstatechange=function(){
-    xhr.readstate.if
+xhr.onreadystatechange=function(){
+    if(xhr.readystate==4){
+        if(xhr.status==200){
+            //do something
+        }else{
+            alert(this.status)
+        }
+    }
 }
-
+xhr.open("GET",URL,true)
+xhr.send()
 
 
 

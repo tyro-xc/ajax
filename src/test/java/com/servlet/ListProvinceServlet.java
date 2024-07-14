@@ -16,22 +16,22 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.List;
-
-
-//@WebServlet("/ajaxRequest")
-public class ListAreaServlet extends HttpServlet {
+@WebServlet("/listProvince")
+public class ListProvinceServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doGet(req, resp);
         String resource = "mybatis.xml";
         InputStream inputStream;
         inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        List<Area> list = sqlSession.selectList("a.b.selectAllArea");
+        List<Area> list = sqlSession.selectList("a.b.selectAllProvince");
         resp.setContentType("text/html;charset=utf-8");
         PrintWriter out=resp.getWriter();
-        out.print(JSON.toJSONString(list));
-
+        String s = JSON.toJSONString(list);
+        out.print(s);
+        System.out.println(s);
     }
 }

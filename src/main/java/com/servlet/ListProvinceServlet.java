@@ -2,6 +2,7 @@ package com.servlet;
 
 import com.alibaba.fastjson.JSON;
 import com.pojo.Area;
+import com.pojo.Province;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -17,9 +18,8 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.List;
 
-
-//@WebServlet("/ajaxRequest")
-public class ListAreaServlet extends HttpServlet {
+@WebServlet("/listProvince")
+public class ListProvinceServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,10 +28,11 @@ public class ListAreaServlet extends HttpServlet {
         inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        List<Area> list = sqlSession.selectList("a.b.selectAllArea");
+        List<Province> list = sqlSession.selectList("a.b.selectAllProvince");
         resp.setContentType("text/html;charset=utf-8");
         PrintWriter out=resp.getWriter();
+        //String s = JSON.toJSONString(list);
         out.print(JSON.toJSONString(list));
-
+        //System.out.println(s);
     }
 }
