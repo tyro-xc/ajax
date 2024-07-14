@@ -5,38 +5,59 @@
     <title>Title</title>
 </head>
 <body>
+<input type="button"id="btn" value="show">
+<table width="50%"border="1px" text-align="center">
+    <tr>
+        <th>id</th>
+        <th>areaID</th>
+        <th>area</th>
+    </tr>
+    <tbody id="stutbody">
+    </tbody>
+</table>
 <script>
     window.onload = function () {
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
+        document.getElementById("btn").onclick=function () {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
 
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    alert("123")
-                    console.log("123")
-                   // document.getElementById("stutbody").innerHTML=this.responseText;
-                } else {
-                    alert(this.status)
+                        var objlist=JSON.parse(this.responseText)
+                        // JSON.parse(this.responseText)
+                        var html=""
+                        for (var i = 0; i < objlist.length; i++) {
+                            var obj=objlist[i];
+                            html+="<tr>"
+                            html+="<td>"+obj.ID+"</td>"
+                            html+="<td>"+obj.area+"</td>"
+                            html+="<td>"+obj.areaID+"</td>"
+                            html+="</tr>"
+                        }
+                        document.getElementById("stutbody").innerHTML=html;
+                       // document.getElementById("stutbody").innerHTML=this.responseText
+                    } else {
+                        alert(this.status)
+                    }
                 }
             }
-            xhr.open("GET", "/ajax/ajaxRequest?t="+new Date().getTime(), true);
+            xhr.open("GET", "/ajax/ajaxRequest", true);
             xhr.send();
         }
     }
 
 </script>
-<table>
-    <tr>
-        <th>id</th>
-        <th>areaID</th>
-        <th>area</th>
-        <th>father</th>
-    </tr>
-
-
-    <tbody id="stutbody">
-
-    </tbody>
-</table>
 </body>
 </html>
+
+<!--
+
+var xhr=new XMLHttpRequest()
+xhr.onreadstatechange=function(){
+    xhr.readstate.if
+}
+
+
+
+
+-->
