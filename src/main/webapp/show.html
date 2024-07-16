@@ -33,7 +33,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
-                        var html = "<option value=''>" + "---please select province---" + "</option>"
+                        var html = "<option value=''>" + "---please select city---" + "</option>"
                         var jsonstr = JSON.parse(this.responseText);
                         for (var i = 0; i < jsonstr.length; i++) {
                             var obj = jsonstr[i]
@@ -46,6 +46,26 @@
                 }
             }
             xhr.open("GET", "/ajax/listCity?code="+this.value, true)
+            xhr.send()
+        }
+        document.getElementById("city").onchange=function C() {
+            var xhr = new XMLHttpRequest()
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        var html = "<option value=''>" + "---please select area---" + "</option>"
+                        var jsonstr = JSON.parse(this.responseText);
+                        for (var i = 0; i < jsonstr.length; i++) {
+                            var obj = jsonstr[i]
+                            html += "<option value='"+obj.areaID+"'>" + obj.area + "</option>"
+                        }
+                        document.getElementById("area").innerHTML = html
+                    } else {
+                        alert(this.status)
+                    }
+                }
+            }
+            xhr.open("GET", "/ajax/listArea?code="+this.value, true)
             xhr.send()
         }
     }

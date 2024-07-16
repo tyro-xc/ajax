@@ -31,8 +31,6 @@ public class ListProvinceServlet extends HttpServlet {
         List<Province> list = sqlSession.selectList("a.b.selectAllProvince");
         resp.setContentType("text/html;charset=utf-8");
         PrintWriter out=resp.getWriter();
-        //String s = JSON.toJSONString(list);
         out.print(JSON.toJSONString(list));
-        //System.out.println(s);
     }
 }

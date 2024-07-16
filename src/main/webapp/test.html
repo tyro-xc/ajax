@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        td{
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <input type="button" id="btn" value="show">
@@ -45,7 +50,7 @@
                     }
                 }
             }
-            xhr.open("GET", "/ajax/ajaxRequest", true);
+            xhr.open("GET", "/ajax/listArea", true);
             xhr.send();
         }
     }

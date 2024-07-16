@@ -1,7 +1,10 @@
 package com.servlet;
 
 import com.alibaba.fastjson.JSON;
+import com.mapper.AreaMapper;
+import com.mapper.CityMapper;
 import com.pojo.Area;
+import com.pojo.City;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -18,20 +21,22 @@ import java.io.PrintWriter;
 import java.util.List;
 
 
-//@WebServlet("/ajaxRequest")
+@WebServlet("/listArea")
 public class ListAreaServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String resource = "mybatis.xml";
+        int code = Integer.parseInt(req.getParameter("code"));
         InputStream inputStream;
         inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        List<Area> list = sqlSession.selectList("a.b.selectAllArea");
         resp.setContentType("text/html;charset=utf-8");
         PrintWriter out=resp.getWriter();
-        out.print(JSON.toJSONString(list));
-
+        AreaMapper mapper = sqlSession.getMapper(AreaMapper.class);
+        List<Area> area = mapper.selectAllAreaByFather(code);
+        out.println(JSON.toJSONString(area));
+        sqlSession.close();
     }
 }
